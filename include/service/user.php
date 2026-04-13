@@ -155,6 +155,44 @@ class User
         return $avatar ?: BLOG_URL . "admin/views/images/avatar.svg";
     }
 
+    static function getUserByUid($uid)
+    {
+        $uid = (int)$uid;
+        if ($uid <= 0) {
+            return [];
+        }
+
+        global $CACHE;
+        $cacheUser = [];
+        if (isset($CACHE)) {
+            $userCache = $CACHE->readCache('user');
+            if (isset($userCache[$uid])) {
+                $cacheUser = $userCache[$uid];
+            }
+        }
+
+        if ($cacheUser) {
+            return [
+                'uid'              => $uid,
+                'nickname'         => isset($cacheUser['name']) ? $cacheUser['name'] : '',
+                'name_orig'        => isset($cacheUser['name_orig']) ? $cacheUser['name_orig'] : '',
+                'email'            => isset($cacheUser['mail']) ? $cacheUser['mail'] : '',
+                'photo'            => isset($cacheUser['avatar']) ? $cacheUser['avatar'] : '',
+                'description'      => isset($cacheUser['des']) ? $cacheUser['des'] : '',
+                'description_orig' => isset($cacheUser['des_orig']) ? $cacheUser['des_orig'] : '',
+                'role'             => isset($cacheUser['role']) ? $cacheUser['role'] : self::ROLE_VISITOR,
+            ];
+        }
+
+        $userModel = new User_Model();
+        return $userModel->getOneUser($uid);
+    }
+
+    static function getCurrentUser()
+    {
+        return self::getUserByUid(UID);
+    }
+
     static function updateUserActivity()
     {
         $uid = UID;

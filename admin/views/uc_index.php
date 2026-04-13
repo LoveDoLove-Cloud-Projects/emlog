@@ -3,14 +3,14 @@
     <div class="d-flex align-items-center mb-4">
         <div class="flex-shrink-0">
             <a class="mr-2" href="blogger.php">
-                <img src="<?= User::getAvatar($user_cache[UID]['avatar']) ?>"
+                <img src="<?= User::getAvatar(isset($currentUser['photo']) ? $currentUser['photo'] : '') ?>"
                     alt="avatar" class="img-fluid rounded-circle border border-secondary border-3"
                     style="width: 60px;">
             </a>
         </div>
         <div class="flex-grow-1 ms-3">
             <div class="align-items-center mb-2">
-                <p class="mb-0 m-2"><a class="mr-2" href="blogger.php"><?= $user_cache[UID]['name'] ?></a></p>
+                <p class="mb-0 m-2"><a class="mr-2" href="blogger.php"><?= isset($currentUser['nickname']) ? $currentUser['nickname'] : '' ?></a></p>
                 <p class="mb-0 m-2 small"><?= _lang('registered_user') ?></p>
             </div>
         </div>

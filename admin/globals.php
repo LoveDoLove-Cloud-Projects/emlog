@@ -17,6 +17,7 @@ $sta_cache = $CACHE->readCache('sta');
 $user_cache = $CACHE->readCache('user');
 $action = Input::getStrVar('action');
 $shortcuts = Shortcut::getActive();
+$currentUser = User::getCurrentUser();
 
 loginAuth::checkLogin();
 User::checkRolePermission();

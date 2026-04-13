@@ -14,9 +14,9 @@
 require_once 'globals.php';
 
 if (empty($action)) {
-    $avatar = empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'];
-    $name = $user_cache[UID]['name'];
-    $role = $user_cache[UID]['role'];
+    $avatar = User::getAvatar(isset($currentUser['photo']) ? $currentUser['photo'] : '');
+    $name = isset($currentUser['nickname']) ? $currentUser['nickname'] : '';
+    $role = isset($currentUser['role']) ? $currentUser['role'] : User::ROLE_VISITOR;
 
     // server info
     $server_app = $_SERVER['SERVER_SOFTWARE'];

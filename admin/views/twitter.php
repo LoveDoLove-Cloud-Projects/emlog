@@ -31,7 +31,8 @@
     <?php
     foreach ($tws as $val):
         $tid = (int)$val['id'];
-        $author = $user_cache[$val['author']]['name'];
+        $authorInfo = User::getUserByUid($val['author']);
+        $author = !empty($authorInfo['nickname']) ? $authorInfo['nickname'] : _lang('unknown_author');
         $private = $val['private'] === 'y';
         $t_img = $val['t_img'];
         $t = subString(strip_tags($val['t']), 0, 300) . '...';

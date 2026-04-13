@@ -120,8 +120,9 @@ $isdraft = $draft ? '&draft=1' : '';
                         foreach ($logs as $key => $value):
                             $sortName = isset($sorts[$value['sortid']]['sortname']) ? $sorts[$value['sortid']]['sortname'] : _lang('unknown_sort');
                             $sortName = $value['sortid'] == -1 ? _lang('uncategorized') : $sortName;
-                            $author = isset($user_cache[$value['author']]['name']) ? $user_cache[$value['author']]['name'] : _lang('unknown_author');
-                            $author_role = isset($user_cache[$value['author']]['role']) ? $user_cache[$value['author']]['role'] : _lang('unknown_role');
+                            $authorInfo = User::getUserByUid($value['author']);
+                            $author = !empty($authorInfo['nickname']) ? $authorInfo['nickname'] : _lang('unknown_author');
+                            $author_role = isset($authorInfo['role']) ? $authorInfo['role'] : '';
                             $logTags = [];
                             if ($value['tags']) {
                                 $logTags = $Tag_Model->getNamesFromIdStr($value['tags']);

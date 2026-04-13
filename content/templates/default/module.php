@@ -147,11 +147,9 @@ function widget_sort($title)
  */
 function widget_twitter($title)
 {
-    global $CACHE;
     $index_newtwnum = Option::get('index_newtwnum') ?: 10;
     $Twitter_Model = new Twitter_Model();
     $ts = $Twitter_Model->getTwitters('', 1, $index_newtwnum);
-    $user_cache = $CACHE->readCache('user');
 ?>
     <div class="widget shadow-theme">
         <div class="widget-title m">
@@ -159,7 +157,8 @@ function widget_twitter($title)
         </div>
         <ul class="unstyle-li">
             <?php foreach ($ts as $value):
-                $author = $user_cache[$value['author']]['name'];
+                $authorInfo = User::getUserByUid($value['author']);
+                $author = !empty($authorInfo['nickname']) ? $authorInfo['nickname'] : _lang('unknown_author');
             ?>
                 <li>
                     <?= $value['t']; ?>

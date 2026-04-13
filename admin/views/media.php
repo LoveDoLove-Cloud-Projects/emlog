@@ -104,7 +104,8 @@
                                 $media_url = getFileUrl($value['filepath']);
                                 $sort_name = $value['sortname'];
                                 $media_name = $value['filename'];
-                                $author = $user_cache[$value['author']]['name'];
+                                $authorInfo = User::getUserByUid($value['author']);
+                                $author = !empty($authorInfo['nickname']) ? $authorInfo['nickname'] : _lang('unknown_author');
                                 if (isImage($value['mimetype'])) {
                                     $media_icon = '🖼️';
                                     $img_viewer = 'class="highslide" onclick="return hs.expand(this)"';
@@ -161,7 +162,8 @@
                 $thumbnail_url = $value['thumbnail_url'];
                 $sort_name = $value['sortname'];
                 $media_name = $value['filename'];
-                $author = $user_cache[$value['author']]['name'];
+                $authorInfo = User::getUserByUid($value['author']);
+                $author = !empty($authorInfo['nickname']) ? $authorInfo['nickname'] : _lang('unknown_author');
                 if (isImage($value['mimetype'])) {
                     $media_icon = getFileUrl($value['filepath_thum']);
                     $img_viewer = 'class="highslide" onclick="return hs.expand(this)"';

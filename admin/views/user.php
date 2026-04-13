@@ -65,7 +65,8 @@
                     <tbody class="checkboxContainer">
                         <?php
                         foreach ($users as $key => $val):
-                            $avatar = User::getAvatar($user_cache[$val['uid']]['avatar']);
+                            $userInfo = User::getUserByUid($val['uid']);
+                            $avatar = User::getAvatar(isset($userInfo['photo']) ? $userInfo['photo'] : '');
                             $forbid = $val['state'] == 1;
                             $user_log_num = isset($sta_cache[$val['uid']]['lognum']) ? $sta_cache[$val['uid']]['lognum'] : 0;
                         ?>

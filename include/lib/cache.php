@@ -162,6 +162,9 @@ class Cache
         $this->cacheWrite($cacheData, 'user');
     }
 
+    /**
+     * Build site statistics cache.
+     */
     private function mc_sta()
     {
         $now = time();
@@ -178,6 +181,9 @@ class Cache
 
         $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "like");
         $like_num = $data['total'];
+
+        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "user");
+        $user_num = $data['total'];
 
         $sql = "SELECT 
         SUM(CASE WHEN hide = 'n' THEN 1 ELSE 0 END) AS com_num,
@@ -196,6 +202,7 @@ class Cache
             'checknum'   => $check_num,
             'note_num'   => $note_num,
             'like_num'   => $like_num,
+            'user_num'   => $user_num,
         ];
 
         // Performance issues only cache the information of the last 1000 users

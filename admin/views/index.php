@@ -34,7 +34,7 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a href="./user.php"><?= _lang('user') ?></a>
-                        <a href="./user.php"><span class="badge badge-cyan badge-pill"><?= count($user_cache) ?></span></a>
+                        <a href="./user.php"><span class="badge badge-cyan badge-pill"><?= isset($sta_cache['user_num']) ? (int)$sta_cache['user_num'] : 0 ?></span></a>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a href="./article.php"><?= _lang('article') ?></a>

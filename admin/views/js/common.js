@@ -12,10 +12,11 @@ function timestamp() {
     return new Date().getTime();
 }
 
-function em_confirm(id, property, token) {
+function em_confirm(id, property, token, extraQuery) {
     let url;
     let msg = '';
     let text = ''
+    extraQuery = extraQuery || '';
     switch (property) {
         case 'article':
             url = 'article.php?action=del&gid=' + id;
@@ -53,7 +54,7 @@ function em_confirm(id, property, token) {
             delAlert(msg, text, url, token)
             break;
         case 'media':
-            url = 'media.php?action=delete&aid=' + id;
+            url = 'media.php?action=delete&aid=' + id + extraQuery;
             text = _langJS.delete_media;
             delAlert(msg, text, url, token)
             break;

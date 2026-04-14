@@ -139,14 +139,18 @@ if ($action === 'upload') {
 if ($action === 'delete') {
     LoginAuth::checkToken();
     $aid = Input::getIntVar('aid');
+    $sid = Input::getStrVar('sid');
     $Media_Model->deleteMedia($aid);
-    emDirect("media.php");
+    $redirectUrl = 'media.php' . ($sid !== '' ? '?sid=' . rawurlencode($sid) : '');
+    emDirect($redirectUrl);
 }
 
 if ($action === 'operate_media') {
     $operate = Input::postStrVar('operate');
     $sort = Input::postIntVar('sort');
     $aids = Input::postIntArray('aids', []);
+    $sid = Input::postStrVar('sid');
+    $baseUrl = 'media.php' . ($sid !== '' ? '?sid=' . rawurlencode($sid) : '');
 
     LoginAuth::checkToken();
     switch ($operate) {
@@ -154,13 +158,13 @@ if ($action === 'operate_media') {
             foreach ($aids as $value) {
                 $Media_Model->deleteMedia($value);
             }
-            emDirect("media.php");
+            emDirect($baseUrl);
             break;
         case 'move':
             foreach ($aids as $id) {
                 $Media_Model->updateMedia(['sortid' => $sort], $id);
             }
-            emDirect("media.php?active_mov=1");
+            emDirect($baseUrl . ($sid !== '' ? '&' : '?') . 'active_mov=1');
             break;
     }
 }
@@ -168,13 +172,15 @@ if ($action === 'operate_media') {
 if ($action === 'update_media') {
     $filename = Input::postStrVar('filename');
     $id = Input::postIntVar('id');
+    $sid = Input::postStrVar('sid');
+    $baseUrl = './media.php' . ($sid !== '' ? '?sid=' . rawurlencode($sid) : '');
 
     if (empty($filename)) {
-        emDirect("./media.php?error_a=1");
+        emDirect($baseUrl . ($sid !== '' ? '&' : '?') . 'error_a=1');
     }
 
     $Media_Model->updateMedia(["filename" => $filename], $id);
-    emDirect("./media.php?active_edit=1");
+    emDirect($baseUrl . ($sid !== '' ? '&' : '?') . 'active_edit=1');
 }
 
 if ($action === 'add_media_sort') {

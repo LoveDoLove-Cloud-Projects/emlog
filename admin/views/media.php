@@ -9,6 +9,7 @@
     <div class="alert alert-danger"><?= _lang('url_format_error') ?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
     <div class="alert alert-danger"><?= _lang('name_required') ?></div><?php endif ?>
+<?php $mediaSidQuery = $sid !== '' ? '&sid=' . urlencode($sid) : ''; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800"><?= _lang('media_lib') ?></h1>
     <span>
@@ -145,7 +146,7 @@
                                     <td>
                                         <a href="#" data-toggle="modal" data-target="#editMediaModal" data-id="<?= $value['aid'] ?>" data-filename="<?= $media_name ?>" class="badge badge-success"><?= _lang('rename') ?></a>
                                         <a href="#" data-toggle="modal" data-target="#moveMediaModal" data-id="<?= $value['aid'] ?>" data-sortid="<?= $value['sortid'] ?>" class="badge badge-primary"><?= _lang('move') ?></a>
-                                        <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= _lang('delete') ?></a>
+                                        <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>', '<?= $mediaSidQuery ?>');" class="badge badge-danger"><?= _lang('delete') ?></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -213,7 +214,7 @@
                             </p>
                             <p class="card-text d-flex justify-content-between">
                                 <span>
-                                    <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>');" class="text-danger small mr-2"><?= _lang('delete') ?></a>
+                                    <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>', '<?= $mediaSidQuery ?>');" class="text-danger small mr-2"><?= _lang('delete') ?></a>
                                     <a href="#" data-toggle="modal" data-target="#moveMediaModal" data-id="<?= $value['aid'] ?>" data-sortid="<?= $value['sortid'] ?>" class="text-primary small"><?= _lang('move') ?></a>
                                 </span>
                                 <input type="checkbox" name="aids[]" value="<?= $value['aid'] ?>" class="aids" />
@@ -227,6 +228,7 @@
     <?php if ($count > 0): ?>
         <div class="form-row align-items-center">
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
+            <input name="sid" value="<?= $sid ?>" type="hidden" />
             <input name="operate" id="operate" value="" type="hidden" />
             <div class="col-auto my-1">
                 <div class="custom-control custom-checkbox mr-sm-2">
@@ -372,6 +374,7 @@
                 </div>
                 <div class="modal-footer border-0">
                     <input type="hidden" value="" id="id" name="id" />
+                    <input type="hidden" name="sid" value="<?= $sid ?>" />
                     <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel') ?></button>
                     <button type="submit" class="btn btn-sm btn-success"><?= _lang('save') ?></button>
                 </div>
@@ -398,6 +401,7 @@
                 </div>
                 <div class="modal-footer border-0">
                     <input type="hidden" value="" id="id" name="id" />
+                    <input type="hidden" name="sid" value="<?= $sid ?>" />
                     <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel') ?></button>
                     <button type="submit" class="btn btn-sm btn-success"><?= _lang('save') ?></button>
                 </div>
@@ -431,6 +435,7 @@
                 <div class="modal-footer border-0">
                     <input type="hidden" name="operate" value="move" />
                     <input type="hidden" name="token" value="<?= LoginAuth::genToken() ?>" />
+                    <input type="hidden" name="sid" value="<?= $sid ?>" />
                     <input type="hidden" name="aids[]" id="move_aid" value="" />
                     <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel') ?></button>
                     <button type="submit" class="btn btn-sm btn-success"><?= _lang('save') ?></button>

@@ -183,7 +183,7 @@
                 }
             ?>
                 <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm hover-shadow-lg">
+                    <div class="card mb-4 shadow-sm hover-shadow-lg media-select-card" style="cursor: pointer;">
                         <a href="<?= $media_url ?>" <?= $img_viewer ?> target="_blank"><img class="card-img-top" loading="lazy" src="<?= $media_icon ?>" /></a>
                         <div class="card-body">
                             <p class="card-text text-muted small">
@@ -522,6 +522,22 @@
                 trigger: 'manual'
             }).popover('show');
             setTimeout(() => $(this).popover('hide'), 1000);
+        });
+
+        /**
+         * 点击宫格卡片空白区域时切换复选框选中状态。
+         * 排除链接/按钮/输入控件，避免影响原有操作行为。
+         */
+        $('.media-select-card').on('click', function(e) {
+            var $target = $(e.target);
+            if ($target.closest('a, button, input, label, select, textarea').length) {
+                return;
+            }
+
+            var $checkbox = $(this).find('input.aids').first();
+            if ($checkbox.length) {
+                $checkbox.trigger('click');
+            }
         });
     });
 

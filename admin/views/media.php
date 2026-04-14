@@ -9,7 +9,7 @@
     <div class="alert alert-danger"><?= _lang('url_format_error') ?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
     <div class="alert alert-danger"><?= _lang('name_required') ?></div><?php endif ?>
-<?php $mediaSidQuery = $sid !== '' ? '&sid=' . urlencode($sid) : ''; ?>
+<?php $mediaSidQuery = $sid !== '' ? 'sid=' . urlencode($sid) : ''; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800"><?= _lang('media_lib') ?></h1>
     <span>
@@ -20,9 +20,9 @@
 <?php if (User::isAdmin()): ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <div>
-            <a href="media.php" class="btn btn-sm btn-primary mr-2 my-1"><?= _lang('all_media') ?></a>
+            <a href="media.php" class="btn btn-sm <?= $sid === '' ? 'btn-primary' : 'btn-light' ?> mr-2 my-1"><?= _lang('all_media') ?></a>
             <?php foreach ($sorts as $key => $val):
-                $cur_tab = $val['id'] == $sid ? "btn-primary" : "btn-success";
+                $cur_tab = $val['id'] == $sid ? "btn-primary" : "btn-light";
             ?>
                 <div class="btn-group mr-2 my-1">
                     <a href="media.php?sid=<?= $val['id'] ?>" class="btn btn-sm <?= $cur_tab ?>"><?= $val['sortname'] ?></a>
@@ -471,8 +471,8 @@
             var sortname = button.data('sortname')
             var id = button.data('id')
             var modal = $(this)
-            modal.find('.modal-body input').val(sortname)
-            modal.find('.modal-footer input').val(id)
+            modal.find('input[name="sortname"]').val(sortname)
+            modal.find('input[name="id"]').val(id)
         })
 
         $('#editMediaModal').on('show.bs.modal', function(event) {
@@ -480,8 +480,8 @@
             var filename = button.data('filename')
             var id = button.data('id')
             var modal = $(this)
-            modal.find('.modal-body input').val(filename)
-            modal.find('.modal-footer input').val(id)
+            modal.find('input[name="filename"]').val(filename)
+            modal.find('input[name="id"]').val(id)
         })
 
         $('#moveMediaModal').on('show.bs.modal', function(event) {

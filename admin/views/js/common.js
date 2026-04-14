@@ -54,7 +54,14 @@ function em_confirm(id, property, token, extraQuery) {
             delAlert(msg, text, url, token)
             break;
         case 'media':
-            url = 'media.php?action=delete&aid=' + id + extraQuery;
+            url = 'media.php?action=delete&aid=' + id;
+            if (extraQuery) {
+                if (extraQuery[0] === '&' || extraQuery[0] === '?') {
+                    url += extraQuery;
+                } else {
+                    url += '&' + extraQuery;
+                }
+            }
             text = _langJS.delete_media;
             delAlert(msg, text, url, token)
             break;

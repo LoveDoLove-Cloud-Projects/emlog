@@ -575,7 +575,7 @@ class TplOptions
                 include $this->view('upload');
                 exit;
             }
-            emDirect('./template.php');
+            emDirect('./template.php?setting=1');
         } elseif ($template !== null) {
             if (!is_dir(TPLS_PATH . $template)) {
                 $this->jsonReturn(array(
@@ -644,7 +644,7 @@ class TplOptions
             include $this->view('setting');
             exit;
         } else {
-            emDirect('./template.php');
+            emDirect('./template.php?setting=1');
         }
     }
 

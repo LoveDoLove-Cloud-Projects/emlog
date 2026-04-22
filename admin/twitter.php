@@ -19,9 +19,8 @@ $Twitter_Model = new Twitter_Model();
 
 if (empty($action)) {
     $page = Input::getIntVar('page', 1);
-    $all = Input::getStrVar('all');
 
-    $uid = $all === 'y' && user::isAdmin() ? '' : UID;
+    $uid = user::isAdmin() ? '' : UID;
     $tws = $Twitter_Model->getTwitters($uid, $page, TW_PAGE_COUNT, true);
     $twnum = $Twitter_Model->getCount($uid);
 

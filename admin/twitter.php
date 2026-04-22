@@ -39,7 +39,6 @@ if (empty($action)) {
 if ($action == 'post') {
     $t = Input::postStrVar('t');
     $private = Input::postStrVar('private', 'n');
-    $top = Input::postStrVar('top', 'n');
 
     if (!$t) {
         emDirect("twitter.php?error_a=1");
@@ -48,7 +47,6 @@ if ($action == 'post') {
     $data = [
         'content' => $t,
         'private' => $private,
-        'top'     => $top,
         'author'  => UID,
         'date'    => time(),
         'ip'      => getIp(),

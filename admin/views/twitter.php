@@ -25,12 +25,6 @@
                 <label class="custom-control-label" for="private"><?= _lang('private') ?></label>
             </div>
         </div>
-        <div class="col-auto">
-            <div class="custom-control custom-switch mb-2">
-                <input class="custom-control-input" type="checkbox" value="y" name="top" id="top">
-                <label class="custom-control-label" for="top"><?= _lang('top') ?></label>
-            </div>
-        </div>
     </div>
 </form>
 <div class="card-columns mt-5">

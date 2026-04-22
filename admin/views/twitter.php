@@ -59,7 +59,7 @@
                 <p class="text-muted small card-text d-flex justify-content-between">
                     <span><?= $val['date'] ?> | by <?= $author ?></span>
                     <span>
-                        <a href="twitter.php?action=settop&id=<?= $tid ?>&top=<?= $top ? 'n' : 'y' ?>&token=<?= LoginAuth::genToken() ?>" class="text-muted mr-2" title="<?= $top ? _lang('cancel_top') : _lang('top') ?>"><i class="icofont-long-arrow-up"></i></a>
+                        <a href="twitter.php?action=settop&id=<?= $tid ?>&top=<?= $top ? 'n' : 'y' ?>&token=<?= LoginAuth::genToken() ?>" class="text-muted mr-2"><?= $top ? _lang('cancel_top') : _lang('top') ?></a>
                         <a href="#" class="text-muted" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-t="<?= htmlspecialchars($val['t_raw']) ?>"><?= _lang('edit') ?></a>
                         <a href="javascript: em_confirm(<?= $tid ?>, 'tw', '<?= LoginAuth::genToken() ?>');" class="care ml-2"><?= _lang('delete') ?></a>
                     </span>

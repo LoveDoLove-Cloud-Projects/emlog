@@ -25,6 +25,12 @@
                 <label class="custom-control-label" for="private"><?= _lang('private') ?></label>
             </div>
         </div>
+        <div class="col-auto">
+            <div class="custom-control custom-switch mb-2">
+                <input class="custom-control-input" type="checkbox" value="y" name="top" id="top">
+                <label class="custom-control-label" for="top"><?= _lang('top') ?></label>
+            </div>
+        </div>
     </div>
 </form>
 <div class="card-columns mt-5">
@@ -34,13 +40,19 @@
         $authorInfo = User::getUserByUid($val['author']);
         $author = !empty($authorInfo['nickname']) ? $authorInfo['nickname'] : _lang('unknown_author');
         $private = $val['private'] === 'y';
+        $top = $val['top'] === 'y';
         $t_img = $val['t_img'];
         $t = subString(strip_tags($val['t']), 0, 300) . '...';
     ?>
-        <div class="card hover-shadow-lg mb-4 <?= $private ? 'border-danger private-card' : '' ?>">
+        <div class="card hover-shadow-lg mb-4 <?= $private ? 'border-danger private-card' : '' ?> <?= $top ? 'border-primary' : '' ?>">
             <?php if ($private): ?>
                 <span class="private-badge badge badge-danger" title="<?= _lang('private') ?>">
                     <?= _lang('private') ?> <i class="icofont-lock"></i>
+                </span>
+            <?php endif; ?>
+            <?php if ($top): ?>
+                <span class="top-badge badge badge-primary" style="position: absolute;top: 10px;right: 10px;z-index: 1;" title="<?= _lang('top') ?>">
+                    <?= _lang('top') ?> <i class="icofont-long-arrow-up"></i>
                 </span>
             <?php endif; ?>
             <div class="card-body pointer-cursor" data-toggle="modal" data-target="#tModal" data-t="<?= htmlspecialchars($val['t']) ?>">
@@ -53,8 +65,9 @@
                 <p class="text-muted small card-text d-flex justify-content-between">
                     <span><?= $val['date'] ?> | by <?= $author ?></span>
                     <span>
+                        <a href="twitter.php?action=settop&id=<?= $tid ?>&top=<?= $top ? 'n' : 'y' ?>&token=<?= LoginAuth::genToken() ?>" class="text-muted mr-2" title="<?= $top ? _lang('cancel_top') : _lang('top') ?>"><i class="icofont-long-arrow-up"></i></a>
                         <a href="#" class="text-muted" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-t="<?= htmlspecialchars($val['t_raw']) ?>"><?= _lang('edit') ?></a>
-                        <a href="javascript: em_confirm(<?= $tid ?>, 'tw', '<?= LoginAuth::genToken() ?>');" class="care"><?= _lang('delete') ?></a>
+                        <a href="javascript: em_confirm(<?= $tid ?>, 'tw', '<?= LoginAuth::genToken() ?>');" class="care ml-2"><?= _lang('delete') ?></a>
                     </span>
                 </p>
             </div>

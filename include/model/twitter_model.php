@@ -66,7 +66,7 @@ class Twitter_Model
         $author = $uid ? 'and author=' . $uid : '';
         $privateCondition = $private ? '' : 'AND private="n"';
         $limit = "LIMIT $start_limit, $perpage_num";
-        $sql = "SELECT * FROM $this->table WHERE 1=1 $author $privateCondition ORDER BY id DESC $limit";
+        $sql = "SELECT * FROM $this->table WHERE 1=1 $author $privateCondition ORDER BY top DESC, id DESC $limit";
         $res = $this->db->query($sql);
         $tws = [];
         while ($row = $this->db->fetch_array($res)) {

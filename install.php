@@ -657,6 +657,7 @@ CREATE TABLE {$db_prefix}twitter (
     replynum int(11) unsigned NOT NULL default '0' COMMENT '回复数量',
     like_count int(11) unsigned NOT NULL default '0' COMMENT '点赞量',
     private enum('n','y') NOT NULL default 'n' COMMENT '是否私密',
+    top enum('n','y') NOT NULL default 'n' COMMENT '是否置顶',
     ip varchar(128) NOT NULL default '' COMMENT 'ip',
     PRIMARY KEY (id),
     KEY author (author)

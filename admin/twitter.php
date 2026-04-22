@@ -39,6 +39,7 @@ if (empty($action)) {
 if ($action == 'post') {
     $t = Input::postStrVar('t');
     $private = Input::postStrVar('private', 'n');
+    $top = Input::postStrVar('top', 'n');
 
     if (!$t) {
         emDirect("twitter.php?error_a=1");
@@ -47,6 +48,7 @@ if ($action == 'post') {
     $data = [
         'content' => $t,
         'private' => $private,
+        'top'     => $top,
         'author'  => UID,
         'date'    => time(),
         'ip'      => getIp(),
@@ -56,6 +58,15 @@ if ($action == 'post') {
     $CACHE->updateCache('sta');
     doAction('post_note', $data, $id);
     emDirect("twitter.php?active_t=1");
+}
+
+if ($action == 'settop') {
+    LoginAuth::checkToken();
+    $id = Input::getIntVar('id');
+    $top = Input::getStrVar('top') === 'y' ? 'y' : 'n';
+
+    $Twitter_Model->update(['top' => $top], $id);
+    emDirect("twitter.php");
 }
 
 if ($action == 'update') {

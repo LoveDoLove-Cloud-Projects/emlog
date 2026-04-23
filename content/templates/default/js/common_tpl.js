@@ -298,7 +298,7 @@ var myBlog = {
                 if (winPos > dataArr[i]['pos']) $tempItem = $('#to' + i)
             }
             if ($tempItem) {
-                $tempItem.css('color', 'red').attr('isRed', 'y')
+                $tempItem.css('color', '#59b8f8').attr('isRed', 'y')
             } else {
                 return
             }

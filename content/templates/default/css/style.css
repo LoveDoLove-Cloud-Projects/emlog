@@ -640,7 +640,7 @@ body {
         width: 100%;
         height: 100%;
         background: rgba(0, 0, 0, 0.5);
-        z-index: 1090;
+        z-index: 1010;
         backdrop-filter: blur(2px);
     }
 
@@ -718,6 +718,10 @@ body {
         min-height: 30px;
         padding: 0.2rem 0.56rem;
     }
+
+    .user-dropdown-menus .list-menu:first-child {
+        display: none;
+    }
 }
 
 /* 大屏幕下的下拉框样式，这里设置的透明度为0（opacity: 0.0;）。但小屏状态下
@@ -774,7 +778,8 @@ body {
         border: none;
         width: 100%;
         top: 0;
-        margin-bottom: 0;
+        margin-top: 2px;
+        margin-bottom: 8px;
         background: transparent;
         box-shadow: none;
         transform: none;
@@ -782,10 +787,29 @@ body {
     }
 
     .dropdown-menus .list-menu .nav-link {
-        min-height: 44px;
-        padding: 10px 15px 10px 26px;
-        font-size: inherit;
+        min-height: 40px;
+        padding: 8px 15px 8px 36px;
+        font-size: 0.92em;
         line-height: 1.5;
+        color: var(--fontColor-sec);
+        position: relative;
+        opacity: 0.85;
+    }
+
+    .dropdown-menus .list-menu .nav-link::before {
+        content: "";
+        position: absolute;
+        left: 22px;
+        top: 50%;
+        width: 6px;
+        height: 1px;
+        background-color: var(--borderColor);
+        transform: translateY(-50%);
+    }
+
+    .dropdown-menus .list-menu .nav-link:hover {
+        opacity: 1;
+        background-color: rgba(0, 0, 0, 0.03);
     }
 }
 

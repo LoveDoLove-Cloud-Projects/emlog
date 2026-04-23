@@ -1439,6 +1439,7 @@ body {
 .avatar img {
     width: 40px;
     height: 40px;
+    object-fit: cover;
     margin-top: 9px;
     margin-right: 4px;
     border-radius: 50%
@@ -1673,6 +1674,7 @@ body {
 .bloggerinfo-img {
     width: 100px;
     height: 100px;
+    object-fit: cover;
     border: 0px solid var(--borderColor);
     border-radius: 50%
 }
@@ -1797,6 +1799,7 @@ body {
 .comment-info_img {
     width: 27px;
     height: 27px;
+    object-fit: cover;
     margin-bottom: 4px;
     margin-right: 3px;
     border-radius: 50%;
@@ -2362,6 +2365,12 @@ img.zoom-img {
         margin: 6px 8px;
         height: 30px;
         width: 30px;
+    }
+
+    .comment .avatar img {
+        height: 30px;
+        width: 30px;
+        margin-top: 5px;
     }
 
     /* 摘要的溢出（overflow）操作 在 小屏幕上要截得多一点 */

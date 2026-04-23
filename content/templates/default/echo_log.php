@@ -6,7 +6,6 @@
 defined('EMLOG_ROOT') || exit('access denied!');
 ?>
 <article class="container log-con blog-container">
-    <span class="back-top mh" onclick="history.go(-1);">&laquo;</span>
     <header class="log-header">
         <h1 class="log-title"><?php topflg($top) ?><?= $log_title ?></h1>
         <div class="log-meta">

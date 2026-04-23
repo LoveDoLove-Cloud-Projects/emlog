@@ -2533,13 +2533,7 @@ img.zoom-img {
 }
 
 #back-to-prev {
-    display: none;
-}
-
-@media (max-width: 767px) {
-    #back-to-prev {
-        display: flex;
-    }
+    display: flex;
 }
 
 /* 黑暗模式下的样式调整 */

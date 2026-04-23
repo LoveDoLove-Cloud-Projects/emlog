@@ -2044,7 +2044,8 @@ img.zoom-img {
     left: 150px;
     width: 300px;
     position: absolute;
-    top: 200px
+    top: 200px;
+    z-index: 1000;
 }
 
 .toc-con .close-toc {
@@ -2389,15 +2390,22 @@ img.zoom-img {
         max-width: 300px;
         padding-right: 30px;
         /* 磨砂效果 */
-        background: rgba(237, 237, 237, 0.8);
-        backdrop-filter: blur(2px);
+        background: var(--conBgcolor);
+        backdrop-filter: blur(10px);
         /* 兼容 Safari 磨砂效果 */
-        -webkit-backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(10px);
         /* 始终固定位置 */
-        z-index: 2;
+        z-index: 1150;
         position: fixed !important;
-        top: 0 !important
+        top: 0 !important;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        left: 0 !important;
     }
+
+    .toc-con div {
+        height: calc(100vh - 60px) !important;
+    }
+}
 
     .toc-link {
         color: rgb(189, 189, 189);

@@ -234,7 +234,7 @@ var myBlog = {
         }
         tocHtml = tocHtml + '<div class="toc-con" style="left:' + padNum + 'px" id="toc-con">'	// 渲染
         tocHtml = tocHtml + '<a href="javascript:void(0);" class="close-toc mh" id="closeToc">x</a>'
-        tocHtml = tocHtml + '<div style="height:calc(100vh - 70px);overflow-y:scroll;" ><ul>'
+        tocHtml = tocHtml + '<div style="height:calc(100vh - 120px);overflow-y:scroll;" ><ul>'
         for (var i = 0; i < data.length; i++) {
             let k = minType
             let itemType = data[i]['type']
@@ -281,7 +281,7 @@ var myBlog = {
 
             if (document.documentElement.scrollTop > articleTop) {
                 $("#toc-con").css("position", "fixed")
-                    .css("top", "0px")
+                    .css("top", "90px")
             } else {
                 $("#toc-con").css("position", "absolute")
                     .css("top", articleTop + "px")

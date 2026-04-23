@@ -17,6 +17,13 @@ defined('EMLOG_ROOT') || exit('access denied!');
     </div>
 </footer>
 <div class="side-toolbar">
+    <?php if (isset($logid)): ?>
+    <div class="side-btn" id="back-to-prev" title="返回上一页" onclick="history.go(-1);">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+    </div>
+    <?php endif; ?>
     <div class="side-btn" id="back-to-top" title="返回顶部" style="display: none;">
         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <line x1="12" y1="19" x2="12" y2="5"></line>

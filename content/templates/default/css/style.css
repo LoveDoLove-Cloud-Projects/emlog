@@ -2532,6 +2532,16 @@ img.zoom-img {
     height: 20px;
 }
 
+#back-to-prev {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    #back-to-prev {
+        display: flex;
+    }
+}
+
 /* 黑暗模式下的样式调整 */
 [data-theme="dark"] .side-btn {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);

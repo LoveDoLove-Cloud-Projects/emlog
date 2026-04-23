@@ -200,19 +200,8 @@ textarea {
 }
 
 footer {
-    margin-top: 60px;
-    background-color: var(--conBgcolor);
-}
-
-footer .list-inline {
-    margin: 0;
-    padding: 0
-}
-
-footer .copyright {
-    font-size: 14px;
-    margin-bottom: 0;
-    text-align: center
+    margin-top: 80px;
+    padding-bottom: 40px;
 }
 
 /* 无样式列表  */
@@ -1956,8 +1945,19 @@ body {
 ---------------------------------------------------*/
 .footinfo {
     line-height: 2;
-    padding-block: 20px;
+    padding-block: 30px;
     text-align: center !important;
+    color: var(--lightColor);
+    font-size: 14px;
+    border-top: 1px solid var(--borderColor);
+}
+
+.footinfo a {
+    color: var(--lightColor);
+}
+
+.footinfo a:hover {
+    color: var(--aHoverColor);
 }
 
 /* 图片放大

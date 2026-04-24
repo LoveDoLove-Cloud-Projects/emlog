@@ -1969,6 +1969,163 @@ body {
     border-style: none
 }
 
+/* 侧边栏：最新评论与微语的轻量列表样式 */
+.side-bar .side-comment-list,
+.side-bar .side-twitter-list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.side-bar .side-comment-list .comment-info,
+.side-bar .side-twitter-list .side-twitter-item {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    column-gap: 8px;
+    row-gap: 4px;
+    align-items: center;
+    margin-top: 0;
+    padding: 12px 0;
+    border: 0;
+    border-bottom: 1px solid var(--borderColor);
+    border-radius: 0;
+    background: transparent;
+    line-height: 1.5;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.side-bar .side-comment-list .comment-info:hover,
+.side-bar .side-twitter-list .side-twitter-item:hover {
+    border-color: rgba(89, 184, 248, 0.28);
+}
+
+[data-theme="dark"] .side-bar .side-comment-list .comment-info:hover,
+[data-theme="dark"] .side-bar .side-twitter-list .side-twitter-item:hover {
+    border-color: rgba(99, 179, 237, 0.45);
+}
+
+.side-bar .side-comment-list li:last-child,
+.side-bar .side-twitter-list li:last-child {
+    border-bottom: 0;
+}
+
+.side-bar .side-comment-list .comment-info_img {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: start;
+    width: 28px;
+    height: 28px;
+    margin-right: 0;
+    margin-bottom: 0;
+    border: 0;
+}
+
+.side-bar .side-comment-list .comm-lates-name,
+.side-bar .side-twitter-list .comm-lates-name {
+    grid-column: 2;
+    grid-row: 1;
+    display: block;
+    max-width: 100%;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--fontColor);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.35;
+    min-width: 0;
+}
+
+.side-bar .side-comment-list .logcom-latest-time,
+.side-bar .side-twitter-list .logcom-latest-time {
+    grid-column: 3;
+    grid-row: 1;
+    position: static;
+    justify-self: end;
+    margin-left: 0;
+    padding: 0;
+    font-size: 12px;
+    line-height: 1.35;
+    white-space: nowrap;
+    color: var(--lightColor);
+}
+
+[data-theme="dark"] .side-bar .side-comment-list .logcom-latest-time,
+[data-theme="dark"] .side-bar .side-twitter-list .logcom-latest-time {
+    color: var(--lightColor);
+}
+
+.side-bar .side-comment-list .comment-info a {
+    grid-column: 2 / 4;
+    grid-row: 2;
+    display: -webkit-box;
+    margin-top: 0;
+    padding-left: 0;
+    color: var(--fontColor);
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.side-bar .side-twitter-list .side-twitter-item {
+    color: var(--fontColor);
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.side-bar .side-twitter-list .side-twitter-item .comm-lates-name {
+    max-width: 100%;
+}
+
+.side-bar .side-twitter-list .side-twitter-content {
+    grid-column: 2 / 4;
+    grid-row: 2;
+    display: -webkit-box;
+    margin-top: 0;
+    color: var(--fontColor);
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.side-bar .side-twitter-list .side-twitter-content p {
+    margin: 0;
+}
+
+.side-bar .side-twitter-list .side-twitter-content br {
+    line-height: 1;
+}
+
+.side-bar .side-comment-list hr,
+.side-bar .side-twitter-list hr {
+    display: none;
+}
+
+.side-bar .side-comment-list br,
+.side-bar .side-twitter-list br {
+    display: none;
+}
+
+@media (max-width: 575px) {
+    .side-bar .side-comment-list .logcom-latest-time,
+    .side-bar .side-twitter-list .logcom-latest-time {
+        position: static;
+        display: inline-flex;
+        margin-left: 8px;
+        vertical-align: middle;
+    }
+}
+
 /* 各处的日期文字样式 */
 .date {
     margin: 0;

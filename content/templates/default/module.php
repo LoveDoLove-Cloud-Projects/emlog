@@ -155,15 +155,18 @@ function widget_twitter($title)
         <div class="widget-title m">
             <h3><?= $title ?></h3>
         </div>
-        <ul class="unstyle-li">
+        <ul class="unstyle-li side-twitter-list">
             <?php foreach ($ts as $value):
                 $authorInfo = User::getUserByUid($value['author']);
                 $author = !empty($authorInfo['nickname']) ? $authorInfo['nickname'] : _lang('unknown_author');
+                $avatar = getEmUserAvatar($value['author'], '');
+                $timeText = is_numeric($value['date']) ? smartDate((int)$value['date']) : $value['date'];
             ?>
-                <li>
-                    <?= $value['t']; ?>
+                <li class="side-twitter-item">
+                    <img class='comment-info_img' src="<?= $avatar ?>" alt="twitter-author" />
                     <span class='comm-lates-name'><?= $author ?></span>
-                    <span class='logcom-latest-time'><?= $value['date'] ?></span><br />
+                    <span class='logcom-latest-time'><?= $timeText ?></span>
+                    <div class="side-twitter-content"><?= $value['t']; ?></div>
                     <hr>
                 </li>
             <?php endforeach; ?>
@@ -183,7 +186,7 @@ function widget_newcomm($title)
         <div class="widget-title">
             <h3><?= $title ?></h3>
         </div>
-        <ul class="unstyle-li">
+        <ul class="unstyle-li side-comment-list">
             <?php
             foreach ($com_cache as $value):
                 $url = Url::comment($value['gid'], $value['page'], $value['cid']);

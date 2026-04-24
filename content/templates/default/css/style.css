@@ -1147,12 +1147,13 @@ body {
 /* 发表评论表单样式 */
 @media (min-width: 768px) {
     .commentform {
-        height: 210px
+        min-height: 210px
     }
 }
 
 #comments {
     margin-top: 80px;
+    margin-bottom: 32px;
 }
 
 .comment-name {
@@ -1183,16 +1184,18 @@ body {
     display: flex;
     flex-wrap: wrap;
     margin-top: 10px;
+    gap: 0;
 }
 
 .com_control {
     display: block;
-    border-radius: 0px;
+    border-radius: 0;
     border: 1px var(--borderColor) solid;
-    border-right: 0px;
+    border-right: 0;
     height: 50px;
     flex: 1;
     min-width: 120px;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .comment-name {
@@ -1214,6 +1217,20 @@ body {
     padding: 0 10px;
     height: 50px;
     background-color: var(--inputBgColor);
+}
+
+.comment-post {
+    clear: both;
+    padding: 12px 0 0;
+    border: none;
+    border-radius: 0;
+    background: var(--conBgcolor);
+}
+
+#comments .commentform {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .captcha-container img {
@@ -1259,12 +1276,10 @@ body {
 }
 
 .comment-header {
-    margin-block: 30px;
-    height: 0
-}
-
-.comment-post {
-    clear: both
+    margin: 26px 0 14px;
+    height: auto;
+    font-size: 18px;
+    line-height: 1.4;
 }
 
 .comment-post p {
@@ -1277,32 +1292,51 @@ body {
 }
 
 .comment-post input {
-    padding: 7px 40px;
+    padding: 7px 16px;
     font-size: small;
     color: #848797;
-    width: 50%
+    width: auto;
 }
 
 .comment-post #comment {
     width: 100%;
     border: 1px var(--borderColor) solid;
-    font-size: small;
-    border-radius: var(--marRadius) 10px 0 0;
-    height: 130px;
-    resize: none
+    font-size: 15px;
+    line-height: 1.75;
+    border-radius: 12px;
+    min-height: 168px;
+    height: auto;
+    resize: vertical;
+    padding: 14px 16px;
+    background: color-mix(in srgb, var(--bodyBground) 42%, var(--conBgcolor));
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.comment-post #comment:focus {
+    border-color: rgba(89, 184, 248, 0.65);
+    box-shadow: 0 0 0 3px rgba(89, 184, 248, 0.16);
+    background: var(--conBgcolor);
+}
+
+#comments .comment-info {
+    margin-top: 0;
+    gap: 10px;
+    overflow: visible;
 }
 
 .comment-post #comment_submit {
-    width: 84px;
-    height: 35px;
+    width: auto;
+    min-width: 112px;
+    height: 42px;
     text-align: center;
     font-size: 14px;
-    margin: 10px 0px;
-    float: right;
-    margin-right: 1px;
-    border-radius: 20px;
+    margin: 0;
+    float: none;
+    border-radius: 999px;
     border: 1px solid var(--buttonBgColor);
-    padding: 7px 10px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
     background-color: var(--buttonBgColor);
     color: var(--buttonTextColor);
@@ -1312,15 +1346,16 @@ body {
 
 .comment-post #cancel-reply {
     display: none;
-    width: 84px;
-    height: 35px;
+    width: auto;
+    min-width: 88px;
+    height: 42px;
     text-align: center;
     font-size: 14px;
-    margin: 10px 8px 10px 0;
-    float: right;
-    border-radius: 20px;
+    margin: 0;
+    float: none;
+    border-radius: 999px;
     border: 1px solid var(--borderColor);
-    padding: 7px 10px;
+    padding: 0 16px;
     background-color: transparent;
     color: var(--fontColor);
     transition: all 0.3s;
@@ -1338,15 +1373,70 @@ body {
     box-shadow: 0 6px 12px rgba(52, 152, 219, 0.35);
 }
 
+.com_submit_p {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+#comments .com_control {
+    height: 48px;
+    min-width: 180px;
+    border-right: 1px solid var(--borderColor);
+    border-radius: 12px !important;
+    background: var(--conBgcolor);
+}
+
+#comments .com_control:focus {
+    border-color: rgba(89, 184, 248, 0.65);
+    box-shadow: 0 0 0 3px rgba(89, 184, 248, 0.13);
+}
+
+#comments .com_control::placeholder,
+#comments .captcha-container input[name="imgcode"]::placeholder {
+    color: color-mix(in srgb, var(--lightColor) 66%, #ffffff 34%);
+}
+
+#comments .com_control:focus::placeholder,
+#comments .captcha-container input[name="imgcode"]:focus::placeholder {
+    color: color-mix(in srgb, var(--lightColor) 46%, #ffffff 54%);
+}
+
+#comments .captcha-container {
+    min-width: 210px;
+    height: 48px;
+    border: 1px solid var(--borderColor);
+    border-left: 1px solid var(--borderColor);
+    border-radius: 12px;
+    padding: 0 10px;
+}
+
+#comments .captcha-container img {
+    width: 108px;
+    height: 34px;
+    object-fit: cover;
+}
+
+[data-theme="dark"] #comments .comment-post #comment {
+    background: color-mix(in srgb, var(--inputBgColor) 88%, #000000 12%);
+}
+
+[data-theme="dark"] #comments .comment-post #comment:focus {
+    background: var(--inputBgColor);
+}
+
 .comment-post .input {
     width: 100px
 }
 
 .comment {
-    margin: 10px 0;
-    padding: 10px 0px;
+    margin: 14px 0;
+    padding: 2px 0;
     font-size: medium;
-    overflow: hidden;
+    overflow: visible;
     color: #333
 }
 
@@ -1356,22 +1446,42 @@ body {
 
 .comment .comment-time {
     color: #999999;
-    display: inline;
-    font-size: 10px
+    display: inline-block;
+    font-size: 12px;
+    margin-left: 8px;
+    vertical-align: middle;
 }
 
 .comment .avatar {
     float: left;
-    margin: 5px 4px
+    margin: 6px 8px 0 0;
 }
 
 .comment .comment-infos {
     background: var(--bodyBground);
-    padding: 12px 12px 5px;
-    border-radius: var(--marRadius);
-    margin-top: 9px;
-    margin-left: 58px;
+    padding: 14px 14px 12px;
+    border-radius: 12px;
+    margin-top: 0;
+    margin-left: 56px;
+    border: 1px solid rgba(89, 184, 248, 0.14);
     color: var(--fontColor);
+    position: relative;
+    line-height: 1.7;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.comment:hover > .comment-infos {
+    border-color: rgba(89, 184, 248, 0.24);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+}
+
+[data-theme="dark"] .comment .comment-infos {
+    border-color: rgba(148, 163, 184, 0.26);
+}
+
+[data-theme="dark"] .comment:hover > .comment-infos {
+    border-color: rgba(99, 179, 237, 0.5);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
 }
 
 .comment .comment-infos-unGravatar {
@@ -1385,40 +1495,91 @@ body {
 /* 评论列表中指向评论者头像的箭头 */
 .arrow {
     position: absolute;
-    margin-top: 3px;
-    margin-left: -34px;
-    border-width: 13px;
+    top: 14px;
+    margin-left: -33px;
+    border-width: 12px;
     border-style: solid;
     border-color: transparent var(--bodyBground) transparent transparent
 }
 
 .comment .comment-content {
-    margin: 8px 0 0 0;
+    margin: 8px 0 0;
     word-break: break-word;
+    overflow-wrap: anywhere;
     color: var(--fontColor);
 }
 
 .comment .comment-reply {
-    float: right;
-    font-size: 12px;
-    cursor: pointer;
-    margin-top: -15px
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
 }
 
-.comment .comment-reply:hover {
-    text-decoration: underline
+.comment .com-reply {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30px;
+    padding: 0 12px;
+    background: transparent;
+    border: 1px solid var(--borderColor);
+    border-radius: 999px;
+    box-shadow: none;
+    appearance: none;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--lightColor);
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s, background-color 0.2s;
+}
+
+.comment .com-reply:hover {
+    color: var(--buttonBgColor);
+    border-color: rgba(89, 184, 248, 0.4);
+    background: rgba(89, 184, 248, 0.1);
+}
+
+.comment .com-reply:focus-visible {
+    outline: 2px solid rgba(89, 184, 248, 0.45);
+    outline-offset: 2px;
+}
+
+[data-theme="dark"] .comment .com-reply {
+    border-color: rgba(148, 163, 184, 0.34);
 }
 
 .comment-children {
-    margin: 20px 10px 10px 20px;
+    margin: 14px 0 4px 28px;
     clear: both;
     border: none;
-    padding: 0
+    padding: 0;
 }
 
 .comment .comment-post {
-    width: 90%;
-    margin: 15px auto
+    width: 100%;
+    margin: 12px 0 0;
+    padding: 12px 0 0;
+    background: transparent;
+    border-top: 1px dashed var(--borderColor);
+    border-radius: 0;
+    clear: both;
+}
+
+.comment .comment-post .comment-info {
+    margin-top: 8px;
+    gap: 10px;
+}
+
+.comment .comment-post .com_control,
+.comment .comment-post .captcha-container {
+    border: 1px solid var(--borderColor);
+    border-right: 1px solid var(--borderColor);
+    border-radius: 10px !important;
+}
+
+.comment .comment-post .captcha-container {
+    border-left: 1px solid var(--borderColor);
 }
 
 .comment-info {
@@ -1437,12 +1598,13 @@ body {
 
 /* 评论人的头像 */
 .avatar img {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     object-fit: cover;
-    margin-top: 9px;
+    margin-top: 0;
     margin-right: 4px;
-    border-radius: 50%
+    border-radius: 50%;
+    border: 1px solid var(--borderColor);
 }
 
 .unstyle-li input[type="submit"] {
@@ -2294,12 +2456,6 @@ img.zoom-img {
         padding: 5.5px 9px 3px 9px
     }
 
-    .comment .comment-info {
-        float: left;
-        margin-left: unset;
-        width: 100%
-    }
-
     .com_control {
         height: 44px
     }
@@ -2318,7 +2474,8 @@ img.zoom-img {
 
     /* 评论相关 */
     .comment-post #comment {
-        border-radius: 6px;
+        border-radius: 10px;
+        min-height: 112px;
     }
 
     .comment-post input {
@@ -2326,29 +2483,32 @@ img.zoom-img {
     }
 
     .commentform .comment-info {
-        margin-top: -5px
+        margin-top: 8px;
+        gap: 10px;
     }
 
     #comments {
-        margin-bottom: 80px
+        margin-bottom: 64px
     }
 
     .com_control {
         border: 1px solid var(--borderColor);
         border-radius: 6px !important;
-        margin-top: 10px
+        margin-top: 0;
+        border-right: 1px solid var(--borderColor);
     }
 
     .comment-mail {
-        margin-bottom: 10px;
+        margin-bottom: 0;
     }
 
     .comment-name {
-        margin-bottom: 10px;
+        margin-bottom: 0;
     }
 
     .comment .comment-post {
-        display: table
+        display: block;
+        width: 100%;
     }
 
     /* 评论列表换新样式 */
@@ -2357,20 +2517,74 @@ img.zoom-img {
     }
 
     .comment .comment-infos {
-        margin-left: 0;
+        margin-left: 38px;
         font-size: 14px;
+        padding: 12px;
     }
 
     .comment .avatar {
-        margin: 6px 8px;
+        margin: 0 0 8px;
         height: 30px;
         width: 30px;
+        float: left;
     }
 
     .comment .avatar img {
         height: 30px;
         width: 30px;
-        margin-top: 5px;
+        margin-top: 0;
+    }
+
+    .comment {
+        margin: 12px 0;
+    }
+
+    .comment-children {
+        margin-left: 12px;
+        padding-left: 8px;
+    }
+
+    .comment .comment-reply {
+        margin-top: 10px;
+    }
+
+    .comment .com-reply {
+        min-height: 32px;
+        padding: 0 11px;
+    }
+
+    .comment-post {
+        padding: 10px 0 0;
+    }
+
+    .comment-post #comment_submit,
+    .comment-post #cancel-reply {
+        width: 100%;
+        min-width: 0;
+        height: 44px;
+    }
+
+    #comments .comment-info {
+        gap: 8px;
+    }
+
+    #comments .com_control,
+    #comments .captcha-container {
+        min-width: 100%;
+        height: 44px;
+    }
+
+    #comments .captcha-container img {
+        width: 96px;
+        height: 30px;
+    }
+
+    .com_submit_p {
+        gap: 6px;
+    }
+
+    .com_submit_p > * {
+        width: 100%;
     }
 
     /* 摘要的溢出（overflow）操作 在 小屏幕上要截得多一点 */
@@ -2415,7 +2629,6 @@ img.zoom-img {
         font-size: 10px;
         padding-left: 10px;
     }
-}
 
 /* 侧边栏文章封面样式 */
 .side-cover-image {

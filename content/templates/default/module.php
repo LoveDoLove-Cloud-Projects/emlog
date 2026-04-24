@@ -524,7 +524,7 @@ function blog_comments($comments, $comnum)
                 <b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
                 <div class="comment-content"><?= $comment['content'] ?></div>
                 <div class="comment-reply">
-                    <span class="com-reply">回复</span>
+                    <button type="button" class="com-reply"><?= _langTpl('reply') ?></button>
                 </div>
             </div>
             <?php blog_comments_children($comments, $comment['children']) ?>
@@ -554,7 +554,7 @@ function blog_comments_children($comments, $children)
                 <div class="comment-content"><?= $comment['content'] ?></div>
                 <?php if ($comment['level'] < 4): ?>
                     <div class="comment-reply">
-                        <span class="com-reply comment-replay-btn"><?= _langTpl('reply') ?></span>
+                        <button type="button" class="com-reply comment-replay-btn"><?= _langTpl('reply') ?></button>
                     </div>
                 <?php endif ?>
             </div>

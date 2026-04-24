@@ -604,8 +604,12 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
             </div>
         </div>
     <?php endif ?>
-<?php } ?>
-<?php
+<?php }
+function wswaadwsfslwwe()
+{
+    if (strpos(file_get_contents(EMLOG_ROOT . '/admin/upgrade.php'), 'emlog.net/service') === false) emMsg('&#x8BF7;&#x4F7F;&#x7528;&#x5B98;&#x65B9;&#x6CE8;&#x518C;&#x7684;&#x6B63;&#x7248;&#x7A0B;&#x5E8F;');
+}
+wswaadwsfslwwe();
 /**
  * 判断函数：是否是首页
  */
